@@ -1,0 +1,19 @@
+qus-4)What makes the createSlice in redux-toolkit difference then A Reducer in redux?
+Ans)createSlice in Redux Toolkit is different from a traditional reducer in Redux in several ways:
+Auto-generated actions
+Auto-generated reducer
+Immutability helpers
+Case reducers
+Initial state
+Slice metadata
+
+qus-5)Describe the benefits of immutable code.
+Ans)Predictable Behavior
+
+Thread Safety
+
+Easier Debugging
+Reduced Bugs
+
+Improved Code Reusability
+Better Performance

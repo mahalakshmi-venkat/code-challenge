@@ -1,6 +1,7 @@
-import { List } from 'ui';
-import React, { useState, useEffect } from 'react';
-const api = "https://pokeapi.co/api/v2/pokemon?limit=151"
+import React from 'react';
+import { Provider } from 'react-redux';
+import store from './store';
+import { fetchPokemons, fetchPokemonsSuccess, fetchPokemonsError } from './pokemonSlice';
 
 interface Pokemon {
   name: string;
@@ -36,34 +37,27 @@ const PokemonList = ({ pokemon }: PokemonListProps) => {
   );
 };
 
-
-
-
 const App = () => {
-  const [pokemon, setPokemon] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const dispatch = store.dispatch;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(api);
+        const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=151');
         if (!response.ok) {
           throw new Error(response.statusText);
         }
         const data = await response.json();
-        console.log('data..',data)
-        setPokemon(data.results.map((pokemon: any) => ({ name: pokemon.name, url: pokemon.url })));
-        setLoading(false);
+        dispatch(fetchPokemonsSuccess(data.results.map((pokemon: any) => ({ name: pokemon.name, url: pokemon.url }))));
       } catch (error) {
-        //setError(error.message);
-        setLoading(false);
+        dispatch(fetchPokemonsError(error.message));
       }
     };
     fetchData();
-  }, []);
+  }, [dispatch]);
+
   return (
- <>
+    <>
       <h1>Pokemon list:</h1>
       <style global jsx>{`
         .pokemon-grid {
@@ -81,9 +75,18 @@ const App = () => {
           background-color: #f0f0f0;
         }
       `}</style>
-      {loading ? <p>Loading...</p> : <PokemonList pokemon={pokemon} />}
+      {store.getState().pokemon.loading ? <p>Loading...</p> : <PokemonList pokemon={store.getState().pokemon.pokemons} />}
+      {store.getState().pokemon.error && <p>Error: {store.getState().pokemon.error}</p>}
     </>
-  )
-}
+  );
+};
 
-export default App
+const Root = () => {
+  return (
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
+};
+
+export default Root;
