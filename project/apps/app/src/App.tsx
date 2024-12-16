@@ -17,14 +17,22 @@ const PokemonList = ({ pokemon }: PokemonListProps) => {
   }
 
   return (
-    <ul>
-      {pokemon.map((pokemon, index) => (
-        <li key={index}>
-          <h2>{pokemon.name}</h2>
-          <p>ID: {index + 1}</p>
-        </li>
-      ))}
-    </ul>
+    <table className="pokemon-grid">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        {pokemon.map((pokemon, index) => (
+          <tr key={index}>
+            <td>{index + 1}</td>
+            <td>{pokemon.name}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
   );
 };
 
@@ -57,6 +65,22 @@ const App = () => {
   return (
  <>
       <h1>Pokemon list:</h1>
+      <style global jsx>{`
+        .pokemon-grid {
+          width: 100%;
+          border-collapse: collapse;
+        }
+
+        .pokemon-grid th, .pokemon-grid td {
+          border: 1px solid #ddd;
+          padding: 10px;
+          text-align: left;
+        }
+
+        .pokemon-grid th {
+          background-color: #f0f0f0;
+        }
+      `}</style>
       {loading ? <p>Loading...</p> : <PokemonList pokemon={pokemon} />}
     </>
   )
