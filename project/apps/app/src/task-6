@@ -1,0 +1,32 @@
+Question 7: explain the use of useEffect hook in React ?
+Ans)The useEffect hook in React usedto run side effects in functional components. Side effects are any operations that occur outside of rendering, such as:
+API calls: Fetching data from an API or sending data to a server.
+DOM mutations: Updating the DOM, such as adding or removing elements.
+Timers: Setting timers or scheduling tasks to run at a later time.
+Event listeners: Attaching event listeners to DOM elements.
+Local storage: Storing data in local storage.
+useEffect hook takes two arguments:
+Callback function: This is the function that will be executed when the component mounts or updates.
+
+Dependencies array: This is an optional array of values that the effect depends on. If the values in the array change, the effect will be re-run
+
+Question 8: What is A High Order Component? 
+A High-Order Component (HOC) is a function that takes a component as an argument and returns a new component with additional props or behavior. HOCs are a powerful tool in React for reusing code and managing complexity.
+
+Question 9: What use cases would a HOC be usefull? 
+Authentication: A HOC can be used to authenticate a user before rendering a component.
+Authorization: A HOC can be used to authorize a user to access a component based on their role or permissions.
+Loading indicators: A HOC can be used to display a loading indicator while a component is fetching data.
+Error handling: A HOC can be used to handle errors and display a error message to the user.
+State management: A HOC can be used to manage state for a component, such as fetching data or updating the state.
+
+Question 10: What does it indicate when a component is prefixed with use and with
+When a component is prefixed with use, it is a Hook. When a component is prefixed with with, it is a Higher-Order Component (HOC). HOCs are a way to wrap a component with additional props or behavior.
+
+Question 11: What is a Generic type in typescript? 
+In TypeScript, a generic type is a type that can work with values of any type. It's a way to create a type that can be used with different types of data, without having to specify the exact type.
+
+Question 12: Whats the difference between a controlled and uncontrolled input in React?
+A controlled input is an input whose value is controlled by a component's state. The component's state is updated whenever the user interacts with the input, and the input's value is always in sync with the state.
+
+An uncontrolled input is an input whose value is not controlled by a component's state. The input's value is stored in the DOM, and the component does not have direct access to it.
